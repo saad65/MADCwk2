@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Text, View, StyleSheet, Button, TextInput, Alert, ToastAndroid, ActivityIndicator, AsyncStorage} from 'react-native';
-import SearchUserResults from './SearchUserResults';
 
 export default class App extends Component {
     // GET REQ WORKING PROPERLY BUT NO RESPONSE OUTPUT TO UI

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Text, View, StyleSheet, Button, TextInput, Alert, ToastAndroid, ActivityIndicator, AsyncStorage, KeyboardAvoidingView, TouchableOpacity, ToolbarAndroid} from 'react-native';
 import {NavigationContainer, StackActions, CommonActions} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
-import { NavigationActions } from 'react-navigation';
+import { NavigationActions, withNavigation } from 'react-navigation';
 import UserProfile from './UserProfile';
 
 export default class LoginScreen extends Component {
@@ -10,10 +10,12 @@ export default class LoginScreen extends Component {
   constructor(props){
     super(props);
     this.state = {
+      token: '',
       email: '',
       password: '',
     }
   }
+  
 
   setEmail = (emailPassed) => {
     this.state.email = emailPassed
@@ -21,6 +23,14 @@ export default class LoginScreen extends Component {
   setPassword = (passwordPassed) => {
     this.state.password = passwordPassed
   }
+
+  storeToken = async (tokenPassed) => {
+    try {
+      AsyncStorage.setItem('token', tokenPassed);
+    } catch (error) {
+      console.log(error)
+    }
+  };
 
   login = () => {
     const { navigate } = this.props.navigation;
@@ -36,9 +46,15 @@ export default class LoginScreen extends Component {
         password: this.state.password
       })
     })
-    .then(r =>  r.json().then(data => ({status: r.status, body: data})))
-    .then(obj => console.log(obj));
-    navigate("UserProfile");
+    .then(results => results.json())
+    .then((data) => {
+      this.setState({ token: data.token })
+      const displayToken = this.state.token
+      this.storeToken(displayToken)
+      const token = {token: this.state.token}
+      console.log("Token generated from api (in LoginScreen): " + displayToken)
+      navigate("UserProfile");
+      });
   }
 
   render(){

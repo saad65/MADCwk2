@@ -13,7 +13,7 @@ import ViewSingleUser from './ViewSingleUser.js';
 import SearchUser from './SearchUser.js';
 import GetUserFollowers from './GetUserFollowers.js'
 import GetUserFollowing from './GetUserFollowing.js';
-import SearchUserResults from './SearchUserResults.js';
+import Logout from './Logout.js';
 
 
 
@@ -67,10 +67,11 @@ function AppNavigator(){
             options={{title: "Get user following"}}
             />
             <Stack.Screen
-            name="SearchUserResults"
-            component={SearchUserResults}
-            options={{title: "Get user following"}}
+            name="Logout"
+            component={Logout}
+            options={{title: "Logout"}}
             />
+            
 
         </Stack.Navigator>
     </NavigationContainer>
