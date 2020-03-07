@@ -16,6 +16,7 @@ import GetUserFollowing from './GetUserFollowing.js';
 import Logout from './Logout.js';
 import SingleUserResults from './SingleUserResults.js';
 import CreateChit from './CreateChit.js';
+import FollowUser from './FollowUser.js';
 
 
 
@@ -82,6 +83,11 @@ function AppNavigator(){
             name="CreateChit"
             component={CreateChit}
             options={{title: "Create chit"}}
+            />
+            <Stack.Screen
+            name="FollowUser"
+            component={FollowUser}
+            options={{title: "Follow user"}}
             />
             
 

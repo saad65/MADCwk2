@@ -46,6 +46,13 @@ export default class UserProfile extends Component{
     const { navigate } = this.props.navigation;
     navigate("CreateChit");
   }
+
+  gotoFollowUser = () => {
+    const token = this.getToken();
+    this.setState({ token: token })
+    const { navigate } = this.props.navigation;
+    navigate("FollowUser");
+  }
   render() {
     return(
       <View>
@@ -57,7 +64,7 @@ export default class UserProfile extends Component{
         <Text></Text>
         <Button title="Create Chit" onPress ={this.gotoCreateChit}/>
         <Text></Text>
-        <Button title="Follow a User" onPress ={() => ToastAndroid.show("Pressed", ToastAndroid.SHORT)}/>
+        <Button title="Follow a User" onPress ={this.gotoFollowUser}/>
         <Text></Text>
       </View>
     )
