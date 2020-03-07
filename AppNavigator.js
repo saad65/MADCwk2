@@ -14,6 +14,8 @@ import SearchUser from './SearchUser.js';
 import GetUserFollowers from './GetUserFollowers.js'
 import GetUserFollowing from './GetUserFollowing.js';
 import Logout from './Logout.js';
+import SingleUserResults from './SingleUserResults.js';
+import CreateChit from './CreateChit.js';
 
 
 
@@ -70,6 +72,16 @@ function AppNavigator(){
             name="Logout"
             component={Logout}
             options={{title: "Logout"}}
+            />
+            <Stack.Screen
+            name="SingleUserResults"
+            component={SingleUserResults}
+            options={{title: "Single User Results"}}
+            />
+            <Stack.Screen
+            name="CreateChit"
+            component={CreateChit}
+            options={{title: "Create chit"}}
             />
             
 

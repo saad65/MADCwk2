@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import { Text, View, StyleSheet, Button, TextInput, Alert, ToastAndroid, ActivityIndicator, AsyncStorage} from 'react-native';
+import { Text, View, StyleSheet, Button, TextInput, Alert, ToastAndroid, ActivityIndicator, AsyncStorage, FlatList} from 'react-native';
 
 export default class ViewSingleUser extends Component {
-    // GET REQ WORKING PROPERLY BUT NO RESPONSE OUTPUT TO UI ONLY TO CONSOLE
+    // GET REQ WORKING PROPERLY BUT NO RESPONSE OUTPUT TO UI ONLY TO CONSOLE WHICH IS VERY SLOW AND RETURNS EMPTY AND REQUIRES MULTIPLE BUTTON CLICKS
     constructor(props){
         super(props);
         this.state = {
-            data: '',
+            data: [],
             userID: -1
         }
     }
@@ -17,15 +17,14 @@ export default class ViewSingleUser extends Component {
 
     getUserID = () => {
         var userID = this.state.userID;
-        var userIDString = userID.toString();
-        const url = 'http://10.0.2.2:3333/api/v0.0.5/user/' + userIDString + '/';
-        var fetchURL = new URL(url)
-        console.log(fetchURL.toString());
-        fetch(fetchURL, {
-            method:'GET'
+        fetch('http://10.0.2.2:3333/api/v0.0.5/user/' + userID)
+        .then((response) => response.json())
+        .then((responseJson) => {
+            this.setState({
+                data: responseJson,
+            });
         })
-        .then(r =>  r.json().then(data => ({status: r.status, body: data})))
-        .then(obj => console.log(obj))
+        .then(console.log(this.state.data))
         .catch((error) =>{
             console.log(error);
         });
@@ -33,10 +32,11 @@ export default class ViewSingleUser extends Component {
     render() {
       return(
           <View>
-              <TextInput placeholder="Enter User ID" onChangeText={(id) => this.setUserID(id)} underlineColorAndroid="transparent"></TextInput>
+              <TextInput placeholder="Enter User ID" onChangeText={(id) => {this.setState({userID: id})}} underlineColorAndroid="transparent"></TextInput>
               <Text></Text>
               <Button title="View user" onPress = {this.getUserID}></Button>
           </View>
       )
+      
     }
 }

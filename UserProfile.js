@@ -12,7 +12,6 @@ export default class UserProfile extends Component{
     }
   }
 
-  // DOES NOT RECEIVE TOKEN FROM LoginScreen, SAYS UNDEFINED AND IS NOT AN OBJECT WHEN IT IS BEING PASSED AS ONE
   storeToken = async (tokenPassed) => {
     try {
       await AsyncStorage.setItem('token', tokenPassed);
@@ -40,6 +39,13 @@ export default class UserProfile extends Component{
     const { navigate } = this.props.navigation;
     navigate("Logout");
   }
+
+  gotoCreateChit = () => {
+    const token = this.getToken();
+    this.setState({ token: token })
+    const { navigate } = this.props.navigation;
+    navigate("CreateChit");
+  }
   render() {
     return(
       <View>
@@ -49,7 +55,7 @@ export default class UserProfile extends Component{
         <Text></Text>
         <Button title="Update Profile" onPress ={() => ToastAndroid.show("Pressed", ToastAndroid.SHORT)}/>
         <Text></Text>
-        <Button title="Create Chit" onPress ={() => ToastAndroid.show("Pressed", ToastAndroid.SHORT)}/>
+        <Button title="Create Chit" onPress ={this.gotoCreateChit}/>
         <Text></Text>
         <Button title="Follow a User" onPress ={() => ToastAndroid.show("Pressed", ToastAndroid.SHORT)}/>
         <Text></Text>

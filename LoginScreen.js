@@ -13,6 +13,7 @@ export default class LoginScreen extends Component {
       token: '',
       email: '',
       password: '',
+      userID: -1
     }
   }
   
@@ -32,6 +33,14 @@ export default class LoginScreen extends Component {
     }
   };
 
+  storeUID = async () => {
+    try {
+      AsyncStorage.setItem('id', this.state.userID);
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   login = () => {
     const { navigate } = this.props.navigation;
     fetch('http://10.0.2.2:3333/api/v0.0.5/login',
@@ -49,10 +58,15 @@ export default class LoginScreen extends Component {
     .then(results => results.json())
     .then((data) => {
       this.setState({ token: data.token })
+      this.setState({ userID : data.id })
       const displayToken = this.state.token
+      const userID = this.state.userID
       this.storeToken(displayToken)
+      const userIDString = userID.toString();
+      AsyncStorage.setItem('id', userIDString);
       const token = {token: this.state.token}
       console.log("Token generated from api (in LoginScreen): " + displayToken)
+      console.log("User ID is (inLoginScreen): " + userID)
       navigate("UserProfile");
       });
   }
