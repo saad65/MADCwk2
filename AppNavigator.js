@@ -17,6 +17,8 @@ import Logout from './Logout.js';
 import SingleUserResults from './SingleUserResults.js';
 import CreateChit from './CreateChit.js';
 import FollowUser from './FollowUser.js';
+import UpdateAccount from './UpdateAccount.js';
+import UnfollowUser from './UnfollowUser.js';
 
 
 
@@ -88,6 +90,16 @@ function AppNavigator(){
             name="FollowUser"
             component={FollowUser}
             options={{title: "Follow user"}}
+            />
+            <Stack.Screen
+            name="UpdateAccount"
+            component={UpdateAccount}
+            options={{title: "Update Account"}}
+            />
+            <Stack.Screen
+            name="UnfollowUser"
+            component={UnfollowUser}
+            options={{title: "Unfollow user"}}
             />
             
 

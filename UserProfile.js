@@ -53,6 +53,19 @@ export default class UserProfile extends Component{
     const { navigate } = this.props.navigation;
     navigate("FollowUser");
   }
+  gotounfollowUser = () => {
+    const token = this.getToken();
+    this.setState({ token: token })
+    const { navigate } = this.props.navigation;
+    navigate("UnfollowUser");
+  }
+
+  gotoUpdateAccount = () => {
+    const token = this.getToken();
+    this.setState({ token: token })
+    const { navigate } = this.props.navigation;
+    navigate("UpdateAccount");
+  }
   render() {
     return(
       <View>
@@ -60,11 +73,13 @@ export default class UserProfile extends Component{
         <Button title="Logout" onPress={this.gotoLogout}/>
         <Text></Text>
         <Text></Text>
-        <Button title="Update Profile" onPress ={() => ToastAndroid.show("Pressed", ToastAndroid.SHORT)}/>
+        <Button title="Update Profile" onPress ={this.gotoUpdateAccount}/>
         <Text></Text>
         <Button title="Create Chit" onPress ={this.gotoCreateChit}/>
         <Text></Text>
         <Button title="Follow a User" onPress ={this.gotoFollowUser}/>
+        <Text></Text>
+        <Button title="Unfollow a User" onPress ={this.gotounfollowUser}/>
         <Text></Text>
       </View>
     )

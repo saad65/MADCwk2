@@ -4,7 +4,7 @@ import {NavigationContainer, StackActions, CommonActions} from '@react-navigatio
 import {createStackNavigator} from '@react-navigation/stack';
 import { NavigationActions, withNavigation } from 'react-navigation';
 
-export default class CreateChit extends Component {
+export default class FollowUser extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -29,10 +29,10 @@ export default class CreateChit extends Component {
   waitTimer = async () => {
     var token = await this.getToken();
     this.setState({token: token})
-    this.createChit();
+    this.followUser();
   }
 
-  createChit = () => {
+  followUser = () => {
     const displayToken = this.state.token
     const id = this.state.user_id
     const { navigate } = this.props.navigation;
