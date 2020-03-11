@@ -21,6 +21,7 @@ import UpdateAccount from './UpdateAccount.js';
 import UnfollowUser from './UnfollowUser.js';
 import SearchUserResults from './SearchUserResults.js';
 import GetUserFollowersResults from './GetUserFollowersResults.js';
+import GetUserFollowingResults from './GetUserFollowingResults.js';
 
 
 
@@ -92,6 +93,11 @@ function AppNavigator(){
             name="GetUserFollowersResults"
             component={GetUserFollowersResults}
             options={{title: "User Followers Results"}}
+            />
+            <Stack.Screen
+            name="GetUserFollowingResults"
+            component={GetUserFollowingResults}
+            options={{title: "User Following Results"}}
             />
             <Stack.Screen
             name="CreateChit"

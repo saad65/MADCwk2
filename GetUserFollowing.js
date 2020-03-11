@@ -10,29 +10,20 @@ export default class GetUserFollowing extends Component {
             userID: -1
         }
     }
-    setUserID = (userIDPassed) => {
-        this.state.userID = userIDPassed;
+    storeID = async (id) => {
+        AsyncStorage.setItem('FollowingID', id)
     }
 
     getUserID = () => {
-        var userID = this.state.userID;
-        var userIDString = userID.toString();
-        const url = 'http://10.0.2.2:3333/api/v0.0.5/user/' + userIDString + '/following';
-        var fetchURL = new URL(url)
-        console.log(fetchURL.toString());
-        fetch(fetchURL, {
-            method:'GET'
-        })
-        .then(r =>  r.json().then(data => ({status: r.status, body: data})))
-        .then(obj => console.log(obj))
-        .catch((error) =>{
-            console.log(error);
-        });
+        const id = this.state.id;
+        const { navigate } = this.props.navigation;
+        this.storeID(id);
+        navigate("GetUserFollowingResults")
     }
     render() {
       return(
         <View>
-            <TextInput placeholder="Enter User ID" onChangeText={(id) => this.setUserID(id)} underlineColorAndroid="transparent"></TextInput>
+            <TextInput placeholder="Enter User ID" onChangeText={(id) => this.setState({id: id})} underlineColorAndroid="transparent"></TextInput>
             <Text></Text>
             <Button title="View user following" onPress = {this.getUserID}></Button>
         </View>
