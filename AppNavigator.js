@@ -19,6 +19,7 @@ import CreateChit from './CreateChit.js';
 import FollowUser from './FollowUser.js';
 import UpdateAccount from './UpdateAccount.js';
 import UnfollowUser from './UnfollowUser.js';
+import SearchUserResults from './SearchUserResults.js';
 
 
 
@@ -79,6 +80,11 @@ function AppNavigator(){
             <Stack.Screen
             name="SingleUserResults"
             component={SingleUserResults}
+            options={{title: "Single User Results"}}
+            />
+            <Stack.Screen
+            name="SearchUserResults"
+            component={SearchUserResults}
             options={{title: "Single User Results"}}
             />
             <Stack.Screen

@@ -11,23 +11,16 @@ export default class ViewSingleUser extends Component {
         }
     }
 
-    setUserID = (userIDPassed) => {
-        this.state.userID = userIDPassed;
+    storeID = (id) => {
+        AsyncStorage.setItem('SingleID', id)
     }
 
+
     getUserID = () => {
-        var userID = this.state.userID;
-        fetch('http://10.0.2.2:3333/api/v0.0.5/user/' + userID)
-        .then((response) => response.json())
-        .then((responseJson) => {
-            this.setState({
-                data: responseJson,
-            });
-        })
-        .then(console.log(this.state.data))
-        .catch((error) =>{
-            console.log(error);
-        });
+        const id = this.state.userID;
+        const { navigate } = this.props.navigation;
+        this.storeID(id);
+        navigate("SingleUserResults")   
     }
     render() {
       return(

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Text, View, StyleSheet, Button, TextInput, Alert, ToastAndroid, ActivityIndicator, AsyncStorage, FlatList, TouchableWithoutFeedbackBase} from 'react-native';
 
-export default class SingleUserResults extends Component {
+export default class SearchUserResult extends Component {
     // GET REQ WORKS PROPERLY, OUTPUT TO UI BUT NEED TO OUTPUT CHIT CONTENT TOO
     constructor(props){
         super(props);
@@ -11,11 +11,11 @@ export default class SingleUserResults extends Component {
         }
     }
 
-    getUserID = async () => {
+    getQuery = async () => {
         try {
-          const userID = await AsyncStorage.getItem('SingleID')
-          if (userID !== null) {
-            return (userID)
+          const query = await AsyncStorage.getItem('SearchQuery')
+          if (query !== null) {
+            return (query)
           }
         } catch (error) {
           console.log(error)
@@ -23,16 +23,14 @@ export default class SingleUserResults extends Component {
       };
 
     getResults = async () => {
-        var id = await this.getUserID();
-        id = parseInt(id)
-        console.log("User ID in SingleUserResults getResults is :" + id)
-        const url = 'http://10.0.2.2:3333/api/v0.0.5/user/' + id + '/';
+        var query = await this.getQuery();
+        console.log("User Query in SearchUserResults getResults is :" + query)
+        const url = 'http://10.0.2.2:3333/api/v0.0.5/search_user?q=' + query;
         return await fetch(url)
         .then((response) => response.json())
         .then((responseJson) => {
-            const result = Object.keys(responseJson).map(key => ({[key]: responseJson[key]}));
             this.setState({
-                isLoading: false, data: result,
+                isLoading: false, data: responseJson,
             });
             console.log(this.state.data);
         })
@@ -62,6 +60,7 @@ export default class SingleUserResults extends Component {
             renderItem = {({ item }) =>
             (
                 <View>
+                    <Text style={{textAlign: 'center', fontSize: 15}}>{item.user_id}</Text>
                     <Text style={{textAlign: 'center', fontSize: 15}}>{item.given_name}</Text>
                     <Text style={{textAlign: 'center', fontSize: 15}}>{item.family_name}</Text>
                     <Text style={{textAlign: 'center', fontSize: 15}}>{item.email}</Text>

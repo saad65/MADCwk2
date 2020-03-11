@@ -14,30 +14,21 @@ export default class App extends Component {
             returnEmail: '',
         }
     }
-    setQuery = (query) => {
-        this.state.query = query;
+    storeQuery = (query) => {
+        AsyncStorage.setItem('SearchQuery', query)
     }
 
     getQuery = () => {
-        var query = this.state.query;
-        var queryString = query.toString();
-        const url = 'http://10.0.2.2:3333/api/v0.0.5/search_user?q=' + queryString;
-        var fetchURL = new URL(url)
-        console.log(fetchURL.toString());
-        fetch(fetchURL, {
-            method:'GET'
-        })
-        .then(r =>  r.json().then(data => ({status: r.status, body: data})))
-        .then(obj => console.log(obj))
-        .catch((error) =>{
-            console.log(error);
-        });
+        const query = this.state.query;
+        const { navigate } = this.props.navigation;
+        this.storeQuery(query);
+        navigate("SearchUserResults")
     }
 
     render() {
       return(
           <View>
-              <TextInput placeholder="Enter Query" onChangeText={(query) => this.setQuery(query)} underlineColorAndroid="transparent"></TextInput>
+              <TextInput placeholder="Enter Query" onChangeText={(query) => this.setState({query: query})} underlineColorAndroid="transparent"></TextInput>
               <Text></Text>
               <Button title="View results" onPress = {this.getQuery}></Button>
               <Text></Text>
