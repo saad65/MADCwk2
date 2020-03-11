@@ -7,7 +7,7 @@ export default class GetUserFollowers extends Component {
         super(props);
         this.state = {
             data: [],
-            userID: -1
+            id: -1
         }
     }
     storeID = async (id) => {

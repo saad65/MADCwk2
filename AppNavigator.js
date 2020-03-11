@@ -22,6 +22,8 @@ import UnfollowUser from './UnfollowUser.js';
 import SearchUserResults from './SearchUserResults.js';
 import GetUserFollowersResults from './GetUserFollowersResults.js';
 import GetUserFollowingResults from './GetUserFollowingResults.js';
+import GetUserPhoto from './GetUserPhoto';
+import ShowUserPhoto from './ShowUserPhoto.js';
 
 
 
@@ -118,6 +120,16 @@ function AppNavigator(){
             name="UnfollowUser"
             component={UnfollowUser}
             options={{title: "Unfollow user"}}
+            />
+            <Stack.Screen
+            name="GetUserPhoto"
+            component={GetUserPhoto}
+            options={{title: "User photo"}}
+            />
+            <Stack.Screen
+            name="ShowUserPhoto"
+            component={ShowUserPhoto}
+            options={{title: "User photo"}}
             />
             
 
