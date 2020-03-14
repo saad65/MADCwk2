@@ -66,6 +66,13 @@ export default class UserProfile extends Component{
     const { navigate } = this.props.navigation;
     navigate("UpdateAccount");
   }
+  gotoUpdatePhoto = () => {
+    const token = this.getToken();
+    this.setState({ token: token })
+    const { navigate } = this.props.navigation;
+    navigate("UpdateUserPhoto");
+  }
+
   render() {
     return(
       <View>
@@ -74,6 +81,8 @@ export default class UserProfile extends Component{
         <Text></Text>
         <Text></Text>
         <Button title="Update Profile" onPress ={this.gotoUpdateAccount}/>
+        <Text></Text>
+        <Button title="Update Profile Photo" onPress ={this.gotoUpdatePhoto}/>
         <Text></Text>
         <Button title="Create Chit" onPress ={this.gotoCreateChit}/>
         <Text></Text>

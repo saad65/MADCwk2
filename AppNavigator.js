@@ -24,6 +24,9 @@ import GetUserFollowersResults from './GetUserFollowersResults.js';
 import GetUserFollowingResults from './GetUserFollowingResults.js';
 import GetUserPhoto from './GetUserPhoto';
 import ShowUserPhoto from './ShowUserPhoto.js';
+import UpdateUserPhoto from './UpdateUserPhoto.js';
+import GetChitPhoto from './GetChitPhoto';
+import ShowChitPhoto from './ShowChitPhoto';
 
 
 
@@ -130,6 +133,21 @@ function AppNavigator(){
             name="ShowUserPhoto"
             component={ShowUserPhoto}
             options={{title: "User photo"}}
+            />
+            <Stack.Screen
+            name="UpdateUserPhoto"
+            component={UpdateUserPhoto}
+            options={{title: "Update user photo"}}
+            />
+            <Stack.Screen
+            name="GetChitPhoto"
+            component={GetChitPhoto}
+            options={{title: "Chit photo"}}
+            />
+            <Stack.Screen
+            name="ShowChitPhoto"
+            component={ShowChitPhoto}
+            options={{title: "Chit photo"}}
             />
             
 

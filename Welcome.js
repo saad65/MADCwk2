@@ -30,6 +30,8 @@ export default class Welcome extends Component{
                 <Button title="View user following" onPress={() => navigate("GetUserFollowing")}/>
                 <Text></Text>
                 <Button title="View user photo" onPress={() => navigate("GetUserPhoto")}/>
+                <Text></Text>
+                <Button title="View chit photo" onPress={() => navigate("GetChitPhoto")}/>
             </View>
         )
     }
