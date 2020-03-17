@@ -13,7 +13,9 @@ export default class GetUserFollowersResults extends Component {
     }
 
     storeID = (id) => {
-        const uri = 'http://10.0.2.2:3333/api/v0.0.5/user/' + id + '/photo'
+        const timestamp = Date.now();
+        const timestampString = timestamp.toString();
+        const uri = 'http://10.0.2.2:3333/api/v0.0.5/user/' + id + '/photo?' + timestampString
         AsyncStorage.setItem('UserPhotoID', uri)
     }
 

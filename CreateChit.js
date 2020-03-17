@@ -71,8 +71,12 @@ export default class CreateChit extends Component {
     var token = await this.getToken();
     var id = await this.getUID();
     this.setState({token: token})
-    // this.state.user.user_id = id;
     this.createChit();
+  }
+
+  gotoGetChitIDPhoto = () => {
+    const { navigate } = this.props.navigation;
+    navigate("GetChitIDPhoto");
   }
 
   createChit = () => {
@@ -113,7 +117,7 @@ export default class CreateChit extends Component {
             <Text style={{color: '#4094f0', textAlign: 'center', fontSize: 25}}>Create chit</Text>
             <Text></Text>
             <TextInput placeholder="Chit ID" onChangeText={(chit_id) => this.setState({chit_id: parseInt(chit_id)})} underlineColorAndroid="transparent"></TextInput>
-            <TextInput placeholder="timestamp" onChangeText={(timestamp) => this.setState({timestamp: parseInt(timestamp)})} underlineColorAndroid="transparent"></TextInput>
+            <TextInput placeholder="Timestamp" onChangeText={(timestamp) => this.setState({timestamp: parseInt(timestamp)})} underlineColorAndroid="transparent"></TextInput>
             <TextInput placeholder="chit_content" onChangeText={(chit_content) => this.setState({chit_content: chit_content})} underlineColorAndroid="transparent"></TextInput>
             <TextInput placeholder="Location lat" onChangeText={(latitude) => this.setLat(latitude)} underlineColorAndroid="transparent"></TextInput>
             <TextInput placeholder="Location long" onChangeText={(longitude) => this.setLong(longitude)} underlineColorAndroid="transparent"></TextInput>
@@ -121,6 +125,7 @@ export default class CreateChit extends Component {
             <TextInput placeholder="Surname" onChangeText={(FName) => this.setFName(FName)} underlineColorAndroid="transparent"></TextInput>
             <TextInput placeholder="Email" onChangeText={(email) => this.setEmail(email)} underlineColorAndroid="transparent"></TextInput>
             <Button title="Create chit" onPress={this.waitTimer}/>
+            <Button title="Take and upload chit photo" onPress={this.gotoGetChitIDPhoto}/>
         </View>
         )
     }

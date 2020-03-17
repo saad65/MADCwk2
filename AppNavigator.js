@@ -27,6 +27,9 @@ import ShowUserPhoto from './ShowUserPhoto.js';
 import UpdateUserPhoto from './UpdateUserPhoto.js';
 import GetChitPhoto from './GetChitPhoto';
 import ShowChitPhoto from './ShowChitPhoto';
+import TakePhoto from './TakePhoto.js';
+import TakeChitPhoto from './TakeChitPhoto.js';
+import GetChitIDPhoto from './GetChitIDPhoto';
 
 
 
@@ -148,6 +151,21 @@ function AppNavigator(){
             name="ShowChitPhoto"
             component={ShowChitPhoto}
             options={{title: "Chit photo"}}
+            />
+            <Stack.Screen
+            name="TakePhoto"
+            component={TakePhoto}
+            options={{title: "Take photo"}}
+            />
+            <Stack.Screen
+            name="TakeChitPhoto"
+            component={TakeChitPhoto}
+            options={{title: "Take photo"}}
+            />
+            <Stack.Screen
+            name="GetChitIDPhoto"
+            component={GetChitIDPhoto}
+            options={{title: "Take photo"}}
             />
             
 
