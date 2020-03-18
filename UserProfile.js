@@ -8,7 +8,8 @@ export default class UserProfile extends Component{
   constructor(props) {
     super(props);
     this.state = {
-      token: ''
+      token: '',
+      id: -1,
     }
   }
 
@@ -31,6 +32,12 @@ export default class UserProfile extends Component{
       console.log(error)
     }
   };
+
+  componentDidMount = async() => {
+    const id = await AsyncStorage.getItem("id")
+    console.log("User ID in UserProfile is: " + id)
+    this.setState({id: id})
+  }
 
   gotoLogout = () => {
     const token = this.getToken();
@@ -74,11 +81,11 @@ export default class UserProfile extends Component{
   }
 
   render() {
+    const { navigate } = this.props.navigation;
     return(
       <View>
-        <Text></Text>
         <Button title="Logout" onPress={this.gotoLogout}/>
-        <Text></Text>
+        <Text style={{color: '#4094f0', textAlign: 'center', fontSize: 17}}>Your ID is: {this.state.id}</Text>
         <Text></Text>
         <Button title="Update Profile" onPress ={this.gotoUpdateAccount}/>
         <Text></Text>
@@ -89,6 +96,16 @@ export default class UserProfile extends Component{
         <Button title="Follow a User" onPress ={this.gotoFollowUser}/>
         <Text></Text>
         <Button title="Unfollow a User" onPress ={this.gotounfollowUser}/>
+        <Text></Text>
+        <Button title="View details of single user" onPress={() => navigate("ViewSingleUser")}/>
+        <Text></Text>
+        <Button title="Search for a user" onPress={() => navigate("SearchUser")}/>
+        <Text></Text>
+        <Button title="View user followers" onPress={() => navigate("GetUserFollowers")}/>
+        <Text></Text>
+        <Button title="View user following" onPress={() => navigate("GetUserFollowing")}/>
+        <Text></Text>
+        <Button title="View user photo" onPress={() => navigate("GetUserPhoto")}/>
         <Text></Text>
       </View>
     )

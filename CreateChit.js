@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import { Text, View, StyleSheet, Button, TextInput, Alert, ToastAndroid, ActivityIndicator, AsyncStorage, KeyboardAvoidingView, TouchableOpacity, ToolbarAndroid} from 'react-native';
-import {NavigationContainer, StackActions, CommonActions} from '@react-navigation/native';
-import {createStackNavigator} from '@react-navigation/stack';
-import { NavigationActions, withNavigation } from 'react-navigation';
+import { Text, View, Button, TextInput, Alert, ToastAndroid, AsyncStorage, PermissionsAndroid} from 'react-native';
+import Geolocation from 'react-native-geolocation-service';
+
 
 export default class CreateChit extends Component {
   constructor(props) {
@@ -21,15 +20,16 @@ export default class CreateChit extends Component {
         given_name: '',
         family_name: '',
         email: ''
-      }
+      },
+      locationPermission: false
     };
   }
 
-  setLat = (latPassed) => {
-    this.state.location.latitude = parseInt(latPassed);
+  setLat = (latitude) => {
+    this.state.location.latitude = parseInt(latitude);
   }
-  setLong = (longPassed) => {
-    this.state.location.longitude = parseInt(longPassed);
+  setLong = (longitude) => {
+    this.state.location.longitude = parseInt(longitude);
   }
   setGName = (givenName) => {
     this.state.user.given_name = givenName;
@@ -37,8 +37,63 @@ export default class CreateChit extends Component {
   setFName = (familyName) => {
     this.state.user.family_name = familyName;
   }
-  setEmail = (emailPassed) => {
-    this.state.user.email = emailPassed;
+  setEmail = (email) => {
+    this.state.user.email = email;
+  }
+  setTimestamp = (timestamp) => {
+    this.state.timestamp = timestamp;
+  }
+  requestLocationPermission = async () => {
+    try {
+      const granted = await PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION, {
+        title: 'Chit Location Permission',
+        message:'This app requires access to your location.', buttonNeutral: 'Ask Me Later', buttonNegative: 'Cancel',buttonPositive: 'OK'
+      });
+        if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+          console.log('You can access location');
+          return true;
+        } else {
+          console.log('Location permission denied');
+          return false;
+        }
+      }
+      catch (error) {
+        console.warn(error);
+      }
+    }
+
+
+    findCoordinates = () => {
+      if (!this.state.locationPermission) {
+          this.state.locationPermission = this.requestLocationPermission();
+      }
+      Geolocation.getCurrentPosition(
+          (position) => {
+              const positionJSON = JSON.stringify(position);
+              console.log(positionJSON);
+              const parseJSON = JSON.parse(positionJSON);
+              this.setLat(parseJSON.coords.latitude);
+              this.setLong(parseJSON.coords.longitude);
+              this.setTimestamp(parseJSON.timestamp);
+              const latitude = this.state.location.latitude;
+              const latitudeString = latitude.toString();
+              const longitude = this.state.location.longitude;
+              const longitudeString = longitude.toString();
+              const timestamp = this.state.timestamp;
+              const timestampString = timestamp.toString();
+              console.log("Lat is: " + latitudeString)
+              console.log("Long is: " + longitudeString)
+              console.log("Chit timestamp: " + timestampString)
+          },
+          (error) => {
+              Alert.alert(error.message)
+          }, {
+          enableHighAccuracy: false, timeout: 20000, maximumAge: 1000
+      });
+  };
+
+  componentDidMount = () => {
+      this.findCoordinates();
   }
   
   getToken = async () => {
@@ -67,7 +122,7 @@ export default class CreateChit extends Component {
     }
   };
 
-  waitTimer = async () => {
+  gotoCreateChit = async () => {
     var token = await this.getToken();
     var id = await this.getUID();
     this.setState({token: token})
@@ -81,7 +136,6 @@ export default class CreateChit extends Component {
 
   createChit = () => {
     const displayToken = this.state.token
-    const { navigate } = this.props.navigation;
     fetch('http://10.0.2.2:3333/api/v0.0.5/chits',
     {
       method: 'POST',
@@ -112,20 +166,20 @@ export default class CreateChit extends Component {
   }
 
     render() {
+      const { navigate } = this.props.navigation;
         return(
         <View>
             <Text style={{color: '#4094f0', textAlign: 'center', fontSize: 25}}>Create chit</Text>
             <Text></Text>
-            <TextInput placeholder="Chit ID" onChangeText={(chit_id) => this.setState({chit_id: parseInt(chit_id)})} underlineColorAndroid="transparent"></TextInput>
-            <TextInput placeholder="Timestamp" onChangeText={(timestamp) => this.setState({timestamp: parseInt(timestamp)})} underlineColorAndroid="transparent"></TextInput>
-            <TextInput placeholder="chit_content" onChangeText={(chit_content) => this.setState({chit_content: chit_content})} underlineColorAndroid="transparent"></TextInput>
-            <TextInput placeholder="Location lat" onChangeText={(latitude) => this.setLat(latitude)} underlineColorAndroid="transparent"></TextInput>
-            <TextInput placeholder="Location long" onChangeText={(longitude) => this.setLong(longitude)} underlineColorAndroid="transparent"></TextInput>
+            <TextInput placeholder="Chit_content" onChangeText={(chit_content) => this.setState({chit_content: chit_content})} underlineColorAndroid="transparent"></TextInput>
             <TextInput placeholder="First Name" onChangeText={(GName) => this.setGName(GName)} underlineColorAndroid="transparent"></TextInput>
             <TextInput placeholder="Surname" onChangeText={(FName) => this.setFName(FName)} underlineColorAndroid="transparent"></TextInput>
             <TextInput placeholder="Email" onChangeText={(email) => this.setEmail(email)} underlineColorAndroid="transparent"></TextInput>
-            <Button title="Create chit" onPress={this.waitTimer}/>
+            <Button title="Create chit" onPress={this.gotoCreateChit}/>
+            <Text></Text>
             <Button title="Take and upload chit photo" onPress={this.gotoGetChitIDPhoto}/>
+            <Text></Text>
+            <Button title="View chit photo" onPress={() => navigate("GetChitPhoto")}/>
         </View>
         )
     }

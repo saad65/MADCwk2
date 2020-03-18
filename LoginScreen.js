@@ -84,7 +84,7 @@ export default class LoginScreen extends Component {
 
         <TextInput placeholder="Email" onChangeText={(email) => this.setEmail(email)} underlineColorAndroid="transparent"></TextInput>
 
-        <TextInput placeholder="Password" onChangeText={(password) => this.setPassword(password)} underlineColorAndroid="transparent"></TextInput>
+        <TextInput secureTextEntry={true} placeholder="Password" onChangeText={(password) => this.setPassword(password)} underlineColorAndroid="transparent"></TextInput>
 
         <Text> </Text>
 

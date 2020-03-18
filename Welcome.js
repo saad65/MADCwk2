@@ -21,17 +21,6 @@ export default class Welcome extends Component{
                 <Text></Text>
                 <Button title="Get all chits from homepage" onPress={() => navigate("GetChits")}/>
                 <Text></Text>
-                <Button title="View details of single user" onPress={() => navigate("ViewSingleUser")}/>
-                <Text></Text>
-                <Button title="Search for a user" onPress={() => navigate("SearchUser")}/>
-                <Text></Text>
-                <Button title="View user followers" onPress={() => navigate("GetUserFollowers")}/>
-                <Text></Text>
-                <Button title="View user following" onPress={() => navigate("GetUserFollowing")}/>
-                <Text></Text>
-                <Button title="View user photo" onPress={() => navigate("GetUserPhoto")}/>
-                <Text></Text>
-                <Button title="View chit photo" onPress={() => navigate("GetChitPhoto")}/>
             </View>
         )
     }
