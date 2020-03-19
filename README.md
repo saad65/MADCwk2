@@ -19,7 +19,7 @@ The project can be built and run in the emulator by carrying out the following c
 "npx react-native run-android"
 
 In some cases, the app may stop working in which case the gradlew file should be cleaned by entering the android file
-directory and cleaning the gradlew file ("cd android && gradlew clean").
+directory and cleaning the gradlew file ("cd android && gradlew clean"). An alternative solution is to sync gradle files in Android Studio or to restart the Node Metro Bundler.
 
 If there is an error regarding hammerjs. There is an additional node module to install which is located at https://github.com/naver/hammer.js.
 
