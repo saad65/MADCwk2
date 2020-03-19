@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, StyleSheet, Button, TextInput, Alert, ToastAndroid, ActivityIndicator, AsyncStorage, FlatList, TouchableOpacity} from 'react-native';
+import { Text, View, StyleSheet, Alert, AsyncStorage, TouchableOpacity} from 'react-native';
 import {RNCamera} from 'react-native-camera';
 export default class TakePhoto extends Component {
     constructor(props) {

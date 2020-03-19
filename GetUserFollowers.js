@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
-import { Text, View, StyleSheet, Button, TextInput, Alert, ToastAndroid, ActivityIndicator, AsyncStorage} from 'react-native';
+import { Text, View, Button, TextInput, AsyncStorage} from 'react-native';
 
 export default class GetUserFollowers extends Component {
-    // GET REQ WORKING PROPERLY BUT NO RESPONSE OUTPUT TO UI
     constructor(props){
         super(props);
         this.state = {
-            data: [],
             id: -1
         }
     }

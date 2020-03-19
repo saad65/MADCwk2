@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, StyleSheet, Button, TextInput, Alert, ToastAndroid, ActivityIndicator, AsyncStorage, KeyboardAvoidingView, TouchableOpacity} from 'react-native';
-import {NavigationContainer} from '@react-navigation/native';
-import {createStackNavigator} from '@react-navigation/stack';
+import { Text, View, Button, TextInput, ToastAndroid, AsyncStorage} from 'react-native';
 
 export default class UpdateAccount extends Component{
     constructor(props){
@@ -16,17 +14,17 @@ export default class UpdateAccount extends Component{
         };
     }
     
-    setGName = (givenName) => {
-        this.state.given_name = givenName
+    setGName = (given_name) => {
+        this.state.given_name = given_name
     }
-    setFName = (familyName) => {
-        this.state.family_name = familyName
+    setFName = (family_name) => {
+        this.state.family_name = family_name
     }
-    setEmail = (emailPassed) => {
-        this.state.email = emailPassed
+    setEmail = (email) => {
+        this.state.email = email
     }
-    setPassword = (passwordPassed) => {
-        this.state.password = passwordPassed
+    setPassword = (password) => {
+        this.state.password = password
     }
 
     getToken = async () => {
@@ -55,9 +53,9 @@ export default class UpdateAccount extends Component{
         }
       };
     
-      waitTimer = async () => {
+      gotoCreateAccount = async () => {
         var token = await this.getToken();
-        var id = await this.getUID();
+        await this.getUID();
         this.setState({token: token})
         this.createAccount();
       }
@@ -97,11 +95,11 @@ export default class UpdateAccount extends Component{
             <Text> </Text>
             <Text style={{color: '#4094f0', textAlign: 'center', fontSize: 25}}>Update Account</Text>
             <Text> </Text>
-            <TextInput placeholder="First Name" onChangeText={(GName) => this.setGName(GName)} underlineColorAndroid="transparent"></TextInput>
-            <TextInput placeholder="Surname" onChangeText={(FName) => this.setFName(FName)} underlineColorAndroid="transparent"></TextInput>
+            <TextInput placeholder="First Name" onChangeText={(given_name) => this.setGName(given_name)} underlineColorAndroid="transparent"></TextInput>
+            <TextInput placeholder="Surname" onChangeText={(family_name) => this.setFName(family_name)} underlineColorAndroid="transparent"></TextInput>
             <TextInput placeholder="Email" onChangeText={(email) => this.setEmail(email)} underlineColorAndroid="transparent"></TextInput>
-            <TextInput placeholder="Password" onChangeText={(password) => this.setPassword(password)} underlineColorAndroid="transparent"></TextInput> 
-            <Button title="Update Account" onPress={this.waitTimer}/>
+            <TextInput secureTextEntry={true} placeholder="Password" onChangeText={(password) => this.setPassword(password)} underlineColorAndroid="transparent"></TextInput> 
+            <Button title="Update Account" onPress={this.gotoCreateAccount}/>
 
         </View>
 

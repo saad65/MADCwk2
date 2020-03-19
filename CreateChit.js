@@ -26,10 +26,10 @@ export default class CreateChit extends Component {
   }
 
   setLat = (latitude) => {
-    this.state.location.latitude = parseInt(latitude);
+    this.state.location.latitude = (latitude);
   }
   setLong = (longitude) => {
-    this.state.location.longitude = parseInt(longitude);
+    this.state.location.longitude = (longitude);
   }
   setGName = (givenName) => {
     this.state.user.given_name = givenName;
@@ -69,21 +69,17 @@ export default class CreateChit extends Component {
       }
       Geolocation.getCurrentPosition(
           (position) => {
-              const positionJSON = JSON.stringify(position);
-              console.log(positionJSON);
-              const parseJSON = JSON.parse(positionJSON);
-              this.setLat(parseJSON.coords.latitude);
-              this.setLong(parseJSON.coords.longitude);
-              this.setTimestamp(parseJSON.timestamp);
+              this.setLat(position.coords.latitude);
+              this.setLong(position.coords.longitude);
+              this.setTimestamp(position.timestamp);
+
               const latitude = this.state.location.latitude;
-              const latitudeString = latitude.toString();
               const longitude = this.state.location.longitude;
-              const longitudeString = longitude.toString();
               const timestamp = this.state.timestamp;
-              const timestampString = timestamp.toString();
-              console.log("Lat is: " + latitudeString)
-              console.log("Long is: " + longitudeString)
-              console.log("Chit timestamp: " + timestampString)
+
+              console.log("Lat is: " + latitude)
+              console.log("Long is: " + longitude)
+              console.log("Chit timestamp: " + timestamp)
           },
           (error) => {
               Alert.alert(error.message)
@@ -124,7 +120,7 @@ export default class CreateChit extends Component {
 
   gotoCreateChit = async () => {
     var token = await this.getToken();
-    var id = await this.getUID();
+    await this.getUID();
     this.setState({token: token})
     this.createChit();
   }
@@ -135,14 +131,14 @@ export default class CreateChit extends Component {
   }
 
   createChit = () => {
-    const displayToken = this.state.token
+    const token = this.state.token
     fetch('http://10.0.2.2:3333/api/v0.0.5/chits',
     {
       method: 'POST',
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
-        'X-Authorization': "" + displayToken
+        'X-Authorization': "" + token
       },
       body: JSON.stringify({
           chit_id: this.state.chit_id,
@@ -160,7 +156,7 @@ export default class CreateChit extends Component {
           }
       })
     })
-    .then((data) => {
+    .then(() => {
       ToastAndroid.show("Chit created!", ToastAndroid.SHORT)
     });
   }
@@ -172,8 +168,8 @@ export default class CreateChit extends Component {
             <Text style={{color: '#4094f0', textAlign: 'center', fontSize: 25}}>Create chit</Text>
             <Text></Text>
             <TextInput placeholder="Chit_content" onChangeText={(chit_content) => this.setState({chit_content: chit_content})} underlineColorAndroid="transparent"></TextInput>
-            <TextInput placeholder="First Name" onChangeText={(GName) => this.setGName(GName)} underlineColorAndroid="transparent"></TextInput>
-            <TextInput placeholder="Surname" onChangeText={(FName) => this.setFName(FName)} underlineColorAndroid="transparent"></TextInput>
+            <TextInput placeholder="First Name" onChangeText={(given_name) => this.setGName(given_name)} underlineColorAndroid="transparent"></TextInput>
+            <TextInput placeholder="Surname" onChangeText={(family_name) => this.setFName(family_name)} underlineColorAndroid="transparent"></TextInput>
             <TextInput placeholder="Email" onChangeText={(email) => this.setEmail(email)} underlineColorAndroid="transparent"></TextInput>
             <Button title="Create chit" onPress={this.gotoCreateChit}/>
             <Text></Text>

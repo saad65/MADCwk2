@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
-import { Text, View, StyleSheet, Button, TextInput, Alert, ToastAndroid, ActivityIndicator, AsyncStorage} from 'react-native';
+import { Text, View, Button, TextInput, AsyncStorage} from 'react-native';
 
 export default class App extends Component {
-    // GET REQ WORKING PROPERLY BUT NO RESPONSE OUTPUT TO UI
-    // NO OUTPUT TO CONSOLE AS IT ADDS A "/" TO THE END OF THE QUERY WHICH THE API READS AS PART OF THE QUERY
     constructor(props){
         super(props);
         this.state = {
@@ -26,7 +24,7 @@ export default class App extends Component {
           <View>
               <TextInput placeholder="Enter Chit ID" onChangeText={(chitID) => this.setState({chitID: chitID})} underlineColorAndroid="transparent"></TextInput>
               <Text></Text>
-              <Button title="View results" onPress = {this.getChitPhotoID}></Button>
+              <Button title="Take Photo" onPress = {this.getChitPhotoID}></Button>
               <Text></Text>
           </View>
       )

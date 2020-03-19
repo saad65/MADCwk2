@@ -1,12 +1,7 @@
 import React, { Component } from 'react';
-import { Text, View, StyleSheet, Button, TextInput, Alert, ToastAndroid, ActivityIndicator, AsyncStorage, KeyboardAvoidingView, TouchableOpacity, ToolbarAndroid} from 'react-native';
-import {NavigationContainer, StackActions, CommonActions} from '@react-navigation/native';
-import {createStackNavigator} from '@react-navigation/stack';
-import { NavigationActions, withNavigation } from 'react-navigation';
-import UserProfile from './UserProfile';
+import { Text, View, Button, TextInput, AsyncStorage} from 'react-native';
 
 export default class LoginScreen extends Component {
-  // LOGIN POST REQ WORKS BUT NO VERIFICATION, USER GOES TO PROFILE AREA W/O CHECKING FOR AUTH TOKEN
   constructor(props){
     super(props);
     this.state = {
@@ -18,28 +13,20 @@ export default class LoginScreen extends Component {
   }
   
 
-  setEmail = (emailPassed) => {
-    this.state.email = emailPassed
+  setEmail = (email) => {
+    this.state.email = email
   }
-  setPassword = (passwordPassed) => {
-    this.state.password = passwordPassed
+  setPassword = (password) => {
+    this.state.password = password
   }
 
-  storeToken = async (tokenPassed) => {
+  storeToken = async (token) => {
     try {
-      AsyncStorage.setItem('token', tokenPassed);
+      AsyncStorage.setItem('token', token);
     } catch (error) {
       console.log(error)
     }
   };
-
-  storeUID = async () => {
-    try {
-      AsyncStorage.setItem('id', this.state.userID);
-    } catch (error) {
-      console.log(error)
-    }
-  }
 
   login = () => {
     const { navigate } = this.props.navigation;
@@ -59,20 +46,22 @@ export default class LoginScreen extends Component {
     .then((data) => {
       this.setState({ token: data.token })
       this.setState({ userID : data.id })
-      const displayToken = this.state.token
+
+      const tokenString = this.state.token
+      this.storeToken(tokenString)
+
       const userID = this.state.userID
-      this.storeToken(displayToken)
       const userIDString = userID.toString();
+
       AsyncStorage.setItem('id', userIDString);
-      const token = {token: this.state.token}
-      console.log("Token generated from api (in LoginScreen): " + displayToken)
+
+      console.log("Token generated from api (in LoginScreen): " + tokenString)
       console.log("User ID is (inLoginScreen): " + userID)
       navigate("UserProfile");
       });
   }
 
   render(){
-    const { navigate } = this.props.navigation;
     return(
       <View>
 

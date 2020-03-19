@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, StyleSheet, Button, TextInput, Alert, ToastAndroid, ActivityIndicator, AsyncStorage} from 'react-native';
-import { createDrawerNavigator } from '@react-navigation/drawer';
-import { NavigationContainer } from '@react-navigation/native';
-import { NavigationParams } from 'react-navigation';
+import { Text, View, Button, AsyncStorage} from 'react-native';
 
 export default class UserProfile extends Component{
   constructor(props) {

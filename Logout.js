@@ -12,14 +12,14 @@ export default class Logout extends Component {
     }
   }
 
-  setToken = (tokenPassed) => {
-    this.state.token = tokenPassed;
+  setToken = (token) => {
+    this.state.token = token;
   }
 
-  waitTimer = async () => {
+  componentDidMount = async () => {
     var token = await this.getToken();
     this.setState({token: token})
-    setTimeout(() => this.logout(), 1000);
+    this.logout();
   }
   
   getToken = async () => {
@@ -34,26 +34,26 @@ export default class Logout extends Component {
     }
   };
   logout = () => {
-    const displayToken = this.state.token
+    const token = this.state.token
     const { navigate } = this.props.navigation;
     fetch('http://10.0.2.2:3333/api/v0.0.5/logout',
     {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'X-Authorization': "" + displayToken
+        'X-Authorization': "" + token
       }
     })
-    .then((data) => {
+    .then(() => {
       navigate("Welcome")
     });
   }
     render () {
         return(
           <View>
+            <Text></Text>
             <Text style={{color: '#4094f0', textAlign: 'center', fontSize: 25}}>Logging out...</Text>
             <Text></Text>
-            <Button title="Return to Welcome" onPress={this.waitTimer}></Button>
           </View>
         )
     }

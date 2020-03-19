@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import { Text, View, StyleSheet, Button, TextInput, Alert, ToastAndroid, ActivityIndicator, AsyncStorage, FlatList, Image} from 'react-native';
+import { View, ActivityIndicator, AsyncStorage, Image} from 'react-native';
 
 export default class ShowUserPhoto extends Component {
-    // GET REQ WORKS PROPERLY, OUTPUT TO UI BUT NEED TO OUTPUT CHIT CONTENT TOO
     constructor(props){
         super(props);
         this.state = {
@@ -38,8 +37,8 @@ export default class ShowUserPhoto extends Component {
             )
         }
         return(
-            <View>
-                <Image style = {{width: 100, height: 100}} source = {{uri: this.state.uri}}></Image>
+            <View style={{justifyContent: 'center'}}>
+                <Image style = {{width: 250, height: 250, alignSelf: 'center'}} source = {{uri: this.state.uri}}></Image>
             </View>
         );
     }

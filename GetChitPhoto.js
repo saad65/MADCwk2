@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import { Text, View, StyleSheet, Button, TextInput, Alert, ToastAndroid, ActivityIndicator, AsyncStorage, FlatList, TouchableWithoutFeedbackBase} from 'react-native';
+import { Text, View, Button, TextInput, AsyncStorage} from 'react-native';
 
 export default class GetUserFollowersResults extends Component {
-    // GET REQ WORKS PROPERLY, OUTPUT TO UI BUT NEED TO OUTPUT CHIT CONTENT TOO
     constructor(props){
         super(props);
         this.state = {
@@ -31,7 +30,7 @@ export default class GetUserFollowersResults extends Component {
           <View>
               <TextInput placeholder="Enter Chit ID" onChangeText={(id) => this.setState({id: id})} underlineColorAndroid="transparent"></TextInput>
               <Text></Text>
-              <Button title="View user photo" onPress = {this.getUserID}></Button>
+              <Button title="View chit photo" onPress = {this.getUserID}></Button>
           </View>
         )
       }

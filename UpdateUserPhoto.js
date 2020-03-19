@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, StyleSheet, Button, TextInput, Alert, ToastAndroid, ActivityIndicator, AsyncStorage, FlatList, TouchableWithoutFeedbackBase } from 'react-native';
+import { Text, View, Button, AsyncStorage} from 'react-native';
 
 export default class UpdateUserPhoto extends Component {
 

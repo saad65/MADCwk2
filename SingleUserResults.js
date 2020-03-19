@@ -1,14 +1,26 @@
 import React, { Component } from 'react';
-import { Text, View, StyleSheet, Button, TextInput, Alert, ToastAndroid, ActivityIndicator, AsyncStorage, FlatList, TouchableWithoutFeedbackBase} from 'react-native';
+import {Text, View, ActivityIndicator, AsyncStorage} from 'react-native';
 
 export default class SingleUserResults extends Component {
-    // GET REQ WORKS PROPERLY, OUTPUT TO UI BUT NEED TO OUTPUT CHIT CONTENT TOO
     constructor(props){
         super(props);
         this.state = {
+            combinedData: [],
             isLoading: true,
-            data: [],
-        }
+            email: '',
+            user_id: -1,
+            family_name: '',
+            given_name: '',
+            recent_chits: {
+                chit_content: '',
+                chit_id: -1,
+                location: {
+                    latitude: -1,
+                    longitude: -1
+                },
+            },
+            timestamp: []
+        };
     }
 
     getUserID = async () => {
@@ -30,11 +42,21 @@ export default class SingleUserResults extends Component {
         return await fetch(url)
         .then((response) => response.json())
         .then((responseJson) => {
-            const result = Object.keys(responseJson).map(key => ({[key]: responseJson[key]}));
+            console.log(responseJson)
             this.setState({
-                isLoading: false, data: result,
+                isLoading: false, email: responseJson.email, user_id: responseJson.user_id, family_name: responseJson.family_name,
+                given_name: responseJson.given_name
             });
-            console.log(this.state.data);
+
+            this.setState({
+                combinedData: responseJson.recent_chits.map(chit => ({
+                    chit_id: chit.chit_id,
+                    content: chit.chit_content,
+                    timestamp: chit.timestamp,
+                    latitude: chit.location.latitude,
+                    longitude: chit.location.longitude
+                }))
+              })
         })
         .catch((error) => {
             console.log(error);
@@ -43,7 +65,7 @@ export default class SingleUserResults extends Component {
 
     componentDidMount = () => {
         this.getResults();
-    }
+    }   
        
     render(){
         if (this.state.isLoading) {
@@ -54,22 +76,15 @@ export default class SingleUserResults extends Component {
             )
         }
         return(
-            <View>
-            <Text style={{color: '#4094f0', textAlign: 'center', fontSize: 25}}>User: </Text>
+        <View>
+            <Text style={{color: '#4094f0', textAlign: 'center', fontSize: 25}}> User:</Text>
             <Text></Text>
-            <FlatList
-            data = {this.state.data}
-            renderItem = {({ item }) =>
-            (
-                <View>
-                    <Text style={{textAlign: 'center', fontSize: 15}}>{item.given_name}</Text>
-                    <Text style={{textAlign: 'center', fontSize: 15}}>{item.family_name}</Text>
-                    <Text style={{textAlign: 'center', fontSize: 15}}>{item.email}</Text>
-                </View>
-            )
-        }
-        keyExtractor={({ id }, index) => id}
-            />
+            <Text style={{color: '#4094f0', textAlign: 'center', fontSize: 20}}>{this.state.user_id}</Text>
+            <Text style={{color: '#4094f0', textAlign: 'center', fontSize: 20}}>{this.state.given_name}</Text>
+            <Text style={{color: '#4094f0', textAlign: 'center', fontSize: 20}}>{this.state.family_name}</Text>
+            <Text style={{color: '#4094f0', textAlign: 'center', fontSize: 20}}>{this.state.email}</Text>
+            <Text></Text>
+            {this.state.combinedData.map(item => <Text style={{color: '#4094f0', textAlign: 'center', fontSize: 20}}>Chit ID:  {item.chit_id}, Chit: "{item.content}", Timestamp: {item.timestamp}, Latitude: {item.latitude}, Longitude: {item.longitude}</Text>)}
         </View>
         );
     }

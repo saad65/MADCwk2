@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import { Text, View, StyleSheet, Button, TextInput, Alert, ToastAndroid, ActivityIndicator, AsyncStorage, FlatList} from 'react-native';
+import { Text, View, Button, TextInput, AsyncStorage} from 'react-native';
 
 export default class ViewSingleUser extends Component {
-    // GET REQ WORKING PROPERLY BUT NO RESPONSE OUTPUT TO UI ONLY TO CONSOLE WHICH IS VERY SLOW AND RETURNS EMPTY AND REQUIRES MULTIPLE BUTTON CLICKS
     constructor(props){
         super(props);
         this.state = {
@@ -15,13 +14,13 @@ export default class ViewSingleUser extends Component {
         AsyncStorage.setItem('SingleID', id)
     }
 
-
     getUserID = () => {
         const id = this.state.userID;
         const { navigate } = this.props.navigation;
         this.storeID(id);
         navigate("SingleUserResults")   
     }
+
     render() {
       return(
           <View>

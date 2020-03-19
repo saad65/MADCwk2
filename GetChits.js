@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, StyleSheet, Button, TextInput, Alert, ToastAndroid, ActivityIndicator, AsyncStorage, FlatList} from 'react-native';
+import { Text, View, ActivityIndicator, FlatList} from 'react-native';
 
 export default class extends Component {
     // FULLY WORKING

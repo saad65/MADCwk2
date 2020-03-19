@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, StyleSheet, Button, TextInput, Alert, ToastAndroid, ActivityIndicator, AsyncStorage, KeyboardAvoidingView, TouchableOpacity, ToolbarAndroid} from 'react-native';
-import {NavigationContainer, StackActions, CommonActions} from '@react-navigation/native';
-import {createStackNavigator} from '@react-navigation/stack';
-import { NavigationActions, withNavigation } from 'react-navigation';
+import { Text, View, Button, TextInput, ToastAndroid, AsyncStorage} from 'react-native';
 
 export default class UnfollowUser extends Component {
     constructor(props) {
@@ -26,23 +23,22 @@ export default class UnfollowUser extends Component {
       }
     };
   
-    waitTimer = async () => {
+    gotoUnfollowUser = async () => {
       var token = await this.getToken();
       this.setState({token: token})
       this.unfollowUser();
     }
   
     unfollowUser = () => {
-      const displayToken = this.state.token
+      const token = this.state.token
       const id = this.state.user_id
-      const { navigate } = this.props.navigation;
       fetch('http://10.0.2.2:3333/api/v0.0.5/user/' + id + '/follow',
       {
         method: 'DELETE',
         headers: {
           Accept: 'application/json',
           'Content-Type': 'application/json',
-          'X-Authorization': "" + displayToken
+          'X-Authorization': "" + token
         },
       })
       .then((data) => {
@@ -53,10 +49,10 @@ export default class UnfollowUser extends Component {
       render() {
           return(
           <View>
-              <Text style={{color: '#4094f0', textAlign: 'center', fontSize: 25}}>Follow user</Text>
+              <Text style={{color: '#4094f0', textAlign: 'center', fontSize: 25}}>Unfollow user</Text>
               <Text></Text>
               <TextInput placeholder="User ID of User to unfollow" onChangeText={(user_id) => this.setState({user_id: parseInt(user_id)})} underlineColorAndroid="transparent"></TextInput>
-              <Button title="Unfollow user" onPress={this.waitTimer}/>
+              <Button title="Unfollow user" onPress={this.gotoUnfollowUser}/>
           </View>
           )
       }

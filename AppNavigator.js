@@ -95,7 +95,7 @@ function AppNavigator(){
             <Stack.Screen
             name="SearchUserResults"
             component={SearchUserResults}
-            options={{title: "Single User Results"}}
+            options={{title: "Search User Results"}}
             />
             <Stack.Screen
             name="GetUserFollowersResults"
