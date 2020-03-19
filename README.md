@@ -25,5 +25,5 @@ If there is an error regarding hammerjs. There is an additional node module to i
 
 ## Questions and issues
 
-Please raise an issue on this github page or contact me on Saad.Mahmood@stu.mmu.ac.uk (please not this email will be inactive as of June 2020).
+Please raise an issue on this github page or contact me on Saad.Mahmood@stu.mmu.ac.uk (please note this email will be inactive as of June 2020).
 
