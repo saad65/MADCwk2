@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 import { Text, View, ActivityIndicator, AsyncStorage, FlatList} from 'react-native';
 
+/*
+    Displays the result of the ID entered from GetUserFollowers.
+    Gets the ID using AsyncStorage, then displays all user data returned from the server using FlatList tag.
+*/
+
 export default class GetUserFollowersResults extends Component {
     constructor(props){
         super(props);

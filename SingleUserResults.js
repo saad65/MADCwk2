@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 import {Text, View, ActivityIndicator, AsyncStorage} from 'react-native';
 
+/*
+    Displays the result of the user ID entered from ViewSingleUser.
+    Gets the ID using AsyncStorage, then displays all user data returned from the server using <Text> tags.
+*/
+
 export default class SingleUserResults extends Component {
     constructor(props){
         super(props);

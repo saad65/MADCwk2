@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
 import { Text, View, Button, TextInput, ToastAndroid} from 'react-native';
 
+/*
+  Create a user/account function.
+  Simple functionality, takes email, first name, surname, email and password from TextInput tags and turns then
+  into a JSON Object using JSON.stringify then submits it in a POST request.
+*/
+
 export default class CreateAccount extends Component {
-  // FULLY WORKING CREATE ACCOUNT W/TOAST NOTIFICATION
   constructor(props){
     super(props);
     this.state = {
@@ -54,23 +59,14 @@ export default class CreateAccount extends Component {
     return(
 
       <View>
-
         <Text> </Text>
-
         <Text style={{color: '#4094f0', textAlign: 'center', fontSize: 25}}>Create an Account</Text>
-
         <Text> </Text>
-
         <TextInput placeholder="First Name" onChangeText={(given_name) => this.setGName(given_name)} underlineColorAndroid="transparent"></TextInput>
-
         <TextInput placeholder="Surname" onChangeText={(family_name) => this.setFName(family_name)} underlineColorAndroid="transparent"></TextInput>
-
         <TextInput placeholder="Email" onChangeText={(email) => this.setEmail(email)} underlineColorAndroid="transparent"></TextInput>
-
-        <TextInput placeholder="Password" onChangeText={(password) => this.setPassword(password)} underlineColorAndroid="transparent"></TextInput>
-        
+        <TextInput placeholder="Password" onChangeText={(password) => this.setPassword(password)} underlineColorAndroid="transparent"></TextInput> 
         <Button title="Create Account" onPress={this.createAccount}/>
-
       </View>
 
     )

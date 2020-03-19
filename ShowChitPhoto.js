@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
 import {View, ActivityIndicator, AsyncStorage, Image} from 'react-native';
 
+/*
+    Displays the photo of the URI obtained from AsyncStorage as set in GetChitPhoto.
+    Displayed in an Image tag.
+*/
+
 export default class ShowUserPhoto extends Component {
-    // GET REQ WORKS PROPERLY, OUTPUT TO UI BUT NEED TO OUTPUT CHIT CONTENT TOO
     constructor(props){
         super(props);
         this.state = {
@@ -12,7 +16,7 @@ export default class ShowUserPhoto extends Component {
         }
     }
 
-    getID = async () => {
+    getURI = async () => {
         try {
           const uri = await AsyncStorage.getItem('ChitPhotoID')
           console.log("User uri for photo is: " + uri)
@@ -26,7 +30,7 @@ export default class ShowUserPhoto extends Component {
       };
 
     componentDidMount = () => {
-        this.getID();
+        this.getURI();
     }
        
     render(){

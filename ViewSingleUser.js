@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
 import { Text, View, Button, TextInput, AsyncStorage} from 'react-native';
 
+/*
+    Gets the ID of the user to be viewed using TextInput tag.
+    Stores that using AsyncStorage.
+    Then, navigates to SingleUserResults.
+*/
+
 export default class ViewSingleUser extends Component {
     constructor(props){
         super(props);

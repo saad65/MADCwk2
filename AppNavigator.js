@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Text, View, StyleSheet, Button, TextInput, Alert, ToastAndroid, ActivityIndicator, AsyncStorage} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 
@@ -31,7 +30,11 @@ import TakePhoto from './TakePhoto.js';
 import TakeChitPhoto from './TakeChitPhoto.js';
 import GetChitIDPhoto from './GetChitIDPhoto';
 
-
+/*
+    This is where all the stack screens are imported and declared within the stack navigator container.
+    The navigator has the default inital screen of "Welcome" which shows the Login, Create Account and GetChits functions.
+    In order to add and use a new screen, the screen must be created and imported from its file path and then declared in a new <Stack.Screen/> tag.
+*/
 
 const Stack = createStackNavigator();
 

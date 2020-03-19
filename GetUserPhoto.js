@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
 import { Text, View, Button, TextInput, AsyncStorage} from 'react-native';
 
+/*
+    Get the User ID from the user then stores that alongside the image URI using AsyncStorage.
+    Also passes the timestamp in the URI in order to force it to refresh any cached image.
+    Following that, it navigates to ShowUserPhoto which display the photo of the user.
+*/
+
 export default class GetUserFollowersResults extends Component {
     constructor(props){
         super(props);

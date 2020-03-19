@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
 import { Text, View, Button, TextInput, AsyncStorage} from 'react-native';
 
+/*
+    Gets the search query from the user using TextInput tag.
+    Stores query using AsyncStorage.
+    Navigates to SearchUserResults.
+*/
+
 export default class App extends Component {
     constructor(props){
         super(props);

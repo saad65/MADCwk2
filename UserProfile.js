@@ -1,6 +1,18 @@
 import React, { Component } from 'react';
 import { Text, View, Button, AsyncStorage} from 'react-native';
 
+/*
+  Main user area/dashboard. 
+  Shows user ID at the top of the screen so the user can use it across all other functions.
+  
+  Navigates to the following using buttons:
+  - Logout
+  - Create a chit
+  - Follow/unfollow a user
+  - Update user profile
+  - Update user photo
+*/
+
 export default class UserProfile extends Component{
   constructor(props) {
     super(props);
@@ -10,69 +22,40 @@ export default class UserProfile extends Component{
     }
   }
 
-  storeToken = async (tokenPassed) => {
-    try {
-      await AsyncStorage.setItem('token', tokenPassed);
-    } catch (error) {
-      console.log(error)
-    }
-  };
-
-
-  getToken = async () => {
-    try {
-      const token = await AsyncStorage.getItem('token');
-      if (token !== null) {
-        return (token)
-      }
-    } catch (error) {
-      console.log(error)
-    }
-  };
-
   componentDidMount = async() => {
     const id = await AsyncStorage.getItem("id")
+    const token = await AsyncStorage.getItem("token")
+    const tokenString = token.toString();
     console.log("User ID in UserProfile is: " + id)
+    console.log("Token in UserProfile is: " + tokenString)
     this.setState({id: id})
+    this.setState({token: token})
   }
 
   gotoLogout = () => {
-    const token = this.getToken();
-    this.setState({ token: token })
-    const displayToken = this.state.token
     const { navigate } = this.props.navigation;
     navigate("Logout");
   }
 
   gotoCreateChit = () => {
-    const token = this.getToken();
-    this.setState({ token: token })
     const { navigate } = this.props.navigation;
     navigate("CreateChit");
   }
 
   gotoFollowUser = () => {
-    const token = this.getToken();
-    this.setState({ token: token })
     const { navigate } = this.props.navigation;
     navigate("FollowUser");
   }
   gotounfollowUser = () => {
-    const token = this.getToken();
-    this.setState({ token: token })
     const { navigate } = this.props.navigation;
     navigate("UnfollowUser");
   }
 
   gotoUpdateAccount = () => {
-    const token = this.getToken();
-    this.setState({ token: token })
     const { navigate } = this.props.navigation;
     navigate("UpdateAccount");
   }
   gotoUpdatePhoto = () => {
-    const token = this.getToken();
-    this.setState({ token: token })
     const { navigate } = this.props.navigation;
     navigate("UpdateUserPhoto");
   }

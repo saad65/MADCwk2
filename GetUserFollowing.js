@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
 import { Text, View, Button, TextInput, AsyncStorage} from 'react-native';
 
+/*
+    Gets the ID of the user to get the following of using TextInput tag.
+    Stores that using AsyncStorage.
+    Then, navigates to GetUserFollowingResults.
+*/
+
 export default class GetUserFollowing extends Component {
     constructor(props){
         super(props);

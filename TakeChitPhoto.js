@@ -1,6 +1,13 @@
 import React, { Component } from 'react';
 import { Text, View, StyleSheet, Alert, AsyncStorage, TouchableOpacity} from 'react-native';
 import {RNCamera} from 'react-native-camera';
+
+/*
+    Same as TakePhoto which is used for uploading a photo for the user profile.
+    Uses RNCamera module to take a picture and send it in a POST request to the server.
+    Gets the Chit ID to upload the photo to and the authentication token from AsyncStorage.
+*/
+
 export default class TakeChitPhoto extends Component {
     constructor(props) {
         super(props);
@@ -66,7 +73,7 @@ export default class TakeChitPhoto extends Component {
                 },
                 body: data
             })
-                .then((response) => {
+                .then(() => {
                     Alert.alert("Picture added!");
                 })
                 .catch((error) => {

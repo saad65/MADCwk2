@@ -1,6 +1,14 @@
 import React, { Component } from 'react';
 import { Text, View, StyleSheet, Alert, AsyncStorage, TouchableOpacity} from 'react-native';
 import {RNCamera} from 'react-native-camera';
+
+/*
+    Takes a photo using the RNCamera module.
+    Gets the authentication token using AsyncStorage.
+    Following this, sends the Object created by the RNCamera (when you take a picture) along
+    with the authentication token in the POST request.
+*/
+
 export default class TakePhoto extends Component {
     constructor(props) {
         super(props);

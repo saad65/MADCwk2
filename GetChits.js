@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
 import { Text, View, ActivityIndicator, FlatList} from 'react-native';
 
+/*
+    Simple GET request which stores response in an array then iterates over each item
+    in the array using FlatList tag.
+*/
+
 export default class extends Component {
-    // FULLY WORKING
     constructor(props){
         super(props);
         this.state = {

@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
 import { Text, View, Button, TextInput, AsyncStorage} from 'react-native';
 
+/*
+    Gets the Chit ID from the user of the chit the user wants to upload
+    the photo to and stores that using AsyncStorage.
+    Following this, it navigates to TakeChitPhoto.
+*/
+
 export default class App extends Component {
     constructor(props){
         super(props);

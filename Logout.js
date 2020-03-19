@@ -1,8 +1,16 @@
 import React, { Component } from 'react';
-import { Text, View, StyleSheet, Button, TextInput, Alert, ToastAndroid, ActivityIndicator, AsyncStorage} from 'react-native';
-import { createDrawerNavigator } from '@react-navigation/drawer';
-import { NavigationContainer } from '@react-navigation/native';
-import LoginScreen from './LoginScreen';
+import { Text, View, AsyncStorage} from 'react-native';
+
+/*
+  User logout function.
+  Navigated from UserProfile.
+
+  Gets auth token using AsyncStorge and passes it in the
+  X-Authorization header to make the POST request to logout.
+  No JSON object required as per API spec.
+
+  After successful request, it navigates back to the Welcome screen.
+*/
 
 export default class Logout extends Component {
   constructor(props) {

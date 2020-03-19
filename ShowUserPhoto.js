@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 import { View, ActivityIndicator, AsyncStorage, Image} from 'react-native';
 
+/*
+    Displays the photo of the URI obtained from AsyncStorage as set in GetUserPhoto.
+    Displayed in an Image tag.
+*/
+
 export default class ShowUserPhoto extends Component {
     constructor(props){
         super(props);

@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import { Text, View, Button, TextInput, ToastAndroid, AsyncStorage} from 'react-native';
 
+/*
+  Exactly the same as CreateAccount instead a PATCH request used instead of POST.
+*/
+
 export default class UpdateAccount extends Component{
     constructor(props){
         super(props);

@@ -1,12 +1,9 @@
 import React, { Component } from 'react';
-import { Text, View, StyleSheet, Button, TextInput, Alert, ToastAndroid, ActivityIndicator, AsyncStorage} from 'react-native';
-import {NavigationContainer} from '@react-navigation/native';
-import {createStackNavigator} from '@react-navigation/stack';
-
-import LoginScreen from "./LoginScreen.js"
-import CreateAccountScreen from "./CreateAccount.js"
-
 import AppNavigator from "./AppNavigator.js"
+
+/*
+  Main App.js which alls AppNavigator file which is where all the screens are located
+*/
 
 export default class App extends Component {
   render() {

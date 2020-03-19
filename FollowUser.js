@@ -1,6 +1,13 @@
 import React, { Component } from 'react';
 import { Text, View, Button, TextInput, ToastAndroid, AsyncStorage} from 'react-native';
 
+/*
+  Follow a user/account.
+  Gets the ID of the account the user wants to follow from the TextInput tag.
+  Also gets the authentication token from AsyncStorage.
+  Following this, it sends a POST request to the server, no JSON object sent as per API spec.
+*/
+
 export default class FollowUser extends Component {
   constructor(props) {
     super(props);

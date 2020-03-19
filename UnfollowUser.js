@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import { Text, View, Button, TextInput, ToastAndroid, AsyncStorage} from 'react-native';
 
+/*
+  Exactly the same as follow user except a DELETE request instead of a POST.
+*/
+
 export default class UnfollowUser extends Component {
     constructor(props) {
       super(props);

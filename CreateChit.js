@@ -2,6 +2,18 @@ import React, { Component } from 'react';
 import { Text, View, Button, TextInput, Alert, ToastAndroid, AsyncStorage, PermissionsAndroid} from 'react-native';
 import Geolocation from 'react-native-geolocation-service';
 
+/*
+  Create a chit function.
+  Gets chit content, first name, surname and email from the user.
+  The rest (timestamp and location) is taken from the response of the
+  geolocation library (Geolocation.getCurrentPosition). If location access is not enabled, then
+  the app will request the user to grant access using the PermissionsAndroid module.
+
+  Following this, all the data is turned into a JSON object using JSON.stringify and sent
+  in a POST request.
+
+  This screen also navigates to viewing a chit's photo and uploading the chit photo.
+*/
 
 export default class CreateChit extends Component {
   constructor(props) {

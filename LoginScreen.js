@@ -1,6 +1,15 @@
 import React, { Component } from 'react';
 import { Text, View, Button, TextInput, AsyncStorage} from 'react-native';
 
+/*
+  User login function.
+  Simple functionality, gets the email and password entered from the TextInput tags,
+  then submits a POST request using JSON.stringify and turning the email and password into a JSON object.
+
+  It also stores the user id and authentication token received from the api using AsyncStorage.
+*/
+
+
 export default class LoginScreen extends Component {
   constructor(props){
     super(props);
