@@ -21,7 +21,7 @@ The project can be built and run in the emulator by carrying out the following c
 In some cases, the app may stop working in which case the gradlew file should be cleaned by entering the android file
 directory and cleaning the gradlew file ("cd android && gradlew clean").
 
-If there is an error regarding hammerjs. There is an additional node module to install which is located at https://github.com/naver/hammer.js
+If there is an error regarding hammerjs. There is an additional node module to install which is located at https://github.com/naver/hammer.js.
 
 ## Questions and issues
 
